@@ -1,420 +1,290 @@
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
+<html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<!-- Video.js source files CSS + JS -->
-<link href="https://vjs.zencdn.net/7.5.5/video-js.css" rel="stylesheet">
-<script src="https://vjs.zencdn.net/7.5.5/video.js"></script>
-<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-<!-- Video.js plugins CSS + JS -->
-<link href="https://players.brightcove.net/videojs-thumbnails/videojs.thumbnails.css" rel="stylesheet">
-<link href="https://players.brightcove.net/videojs-bc-playlist-ui/1/videojs-bc-playlist-ui.css" rel="stylesheet">
-<script src="https://players.brightcove.net/videojs-thumbnails/videojs.thumbnails.js"></script>
-<script src="http://videojs-skins.omartopic.com/demo/scripts/videojs-playlist.js"></script>
-<script src="https://players.brightcove.net/videojs-bc-playlist-ui/1/videojs-bc-playlist-ui.min.js"></script>
-<!-- Video.js skins plugin CSS -->
-<link href="http://videojs-skins.omartopic.com/plugin/styles/videojs-skins.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Video Playlist </title>
+<!-- Responsive viewport -->
+<meta content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' name='viewport'/>
+<link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css"/>
+<style type="text/css">
+*{margin:0;padding:0;box-sizing:border-box;text-transform:capitalize;}
+body{background:#000
+
+;}
+.heading{color:#444;font-size:40px;text-align:center;padding:10px;}
+.container{display:grid;grid-template-columns:2fr 1fr;gap:15px;align-items:flex-start;padding:5px 5%;}
+.container .main-video{background:#151515;border-radius:5px;padding:10px;}
+.container .main-video video{width:100%;border-radius:5px;}
+.container .main-video .title{
+color:#fff;font-size:23px;padding-top:15px;padding-bottom:15px;}
+.container .video-list{
+background:#151515;border-radius:5px;height:317px;overflow-y:scroll;}
+.container .video-list::-webkit-scrollbar{
+width:7px;}
+.container .video-list::-webkit-scrollbar-track{
+background:#000;border-radius:50px;}
+.container .video-list::-webkit-scrollbar-thumb{
+background:#00a7ad;border-radius:50px;}
+.container .video-list .vid video{
+width:100px;border-radius:5px;}
+.container .video-list .vid{
+background:#000;display:flex;align-items:center;gap:15px;border-radius:5px;margin:10px;padding:10px;border:1px solid rgba(0,0,0,.1);cursor:pointer;}
+.container .video-list .vid:hover{
+background:#000;}
+.container .video-list .vid.active{
+background:#00a7ad;}
+.container .video-list .vid.active .title{
+color:#fff;}
+.container .video-list .vid .title{
+color:#fff;font-size:17px;}
+@media (max-width: 999px){
+.container{grid-template-columns:1.5fr 1fr;padding:10px;}}
+@media (max-width: 768px){
+.container{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
-<style>
-body{background:black;}
-/* Skin 1 */
-.video-js.skin-1 .vjs-play-progress { background: #37bc9b; }
-.video-js.skin-1 .vjs-volume-bar.vjs-slider-horizontal .vjs-volume-level { background: #37bc9b; }
-.vjs-playlist-skin-1 .vjs-playlist-item.vjs-selected { background: #37bc9b; }
-.vjs-playlist-skin-1.vjs-mouse .vjs-playlist-item:focus .vjs-playlist-thumbnail:before, .vjs-playlist-skin-1.vjs-mouse .vjs-playlist-item:hover .vjs-playlist-thumbnail:before { background: #37bc9b; }
-</style>
-
-<script>
-// Demo Thumbnails
-var thumbnails = {
-"0": {"src": "http://solutions.brightcove.com/bcls/assets/images/sea-lionfish-thumbnail.png"},
-"30": {"src": "http://solutions.brightcove.com/bcls/assets/images/sea-anemone-thumbnail.png"},
-"60": {"src": "http://solutions.brightcove.com/bcls/assets/images/sea-clownfish-thumbnail.png"},
-"90": {"src": "http://solutions.brightcove.com/bcls/assets/images/sea-seahorse-thumbnail.png"}}
-// Demo Playlists
-var playlist = [
-{name: 'SANYUKA',
-description: 'Home of lifestyle and entertainment.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/tv_sanyuka//20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcnNBcZjJQOG_S44hI-DnH_XzNTTubRf8jVw&usqp=CAU'}]},
-{name: 'KBS TV',
-description: 'Ugandan Entertaining, Informative, and Educative Tv station.',
-duration: 00,
-sources: [
-{ src: 'http://194.163.189.252:8080/live/stream76_hi/index.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRcTPLdDjR5LodAgkWxJWJo_3DKfJp2VWF6g&usqp=CAU'}]},
-{name: 'NBS SPORT',
-description: 'The English Premier League is home at NBS SPORT.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/NBS_Sport/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb71DtSPpoaAe-EnRUOoIaoF66j3Usnps_9Q&usqp=CAU'}]},
-{name: 'AFRO BEATS',
-description: 'Discover rhythmic African beats spanning generations.',
-duration: 00,
-sources: [
-{ src: 'https://stream.ecable.tv/afrobeats/index.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8NZx2l5jS_YplHFkVKV629LpUb5qM35-WAQ&usqp=CAU'}]},
-{name: 'NYCE TV',
-description: 'Choice for Ugandans across the globe as the leader in the latest News, Current affairs, Inspiration, Sports, Entertainment.',
-duration: 00,
-sources: [
-{ src: 'http://nycetv-dmi-origin.airtelstream.net/readymedia/stream/NYCE_TV/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKWFL5c3BV4VVSt_g5RLNBuSkHMCkMt_zTOg&usqp=CAU'}]},
-{name: 'REST CHANNEL',
-description: 'Extending the Gospel of Jesus Christ to the entire family through original content.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/RestTV/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://i.postimg.cc/yxm1M1Cq/unnamed.jpg'}]},
-{name: 'TRACE URBAN',
-description: 'R&B and Rhythmic Top 40 music channel.',
-duration: 00,
-sources: [
-{ src: 'https://lightning-traceurban-samsungau.amagi.tv/playlist.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRwJMPuMnb4l_X8wBuTANc4VTd0BwLIrfgjw&usqp=CAU'}]},
-{name: 'MANIFEST',
-description: 'A religious station created to propagate the Gospel of Christ to every creature as instructed by God Almighty.',
-duration: 00,
-sources: [
-{ src: 'http://glorioustimes-dmi-origin.airtelstream.net/readymedia/stream/GLORIOUS_TIMES/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzYPPplf_HHwWtIbZkbYOgcIAs_7PEWKrBxg&usqp=CAU'}]},
-{name: 'FORT TV',
-description: 'Fort tv experience comes with a whole vibe of entertainment and news experience from journalists in fort Portal.',
-duration: 00,
-sources: [
-{ src: 'http://fort.co-works.org:8080/hls/live.stream.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNQ26ujjFYT5vZJHK4bXmRXfcDN6O_WNzg1w&usqp=CAU'}]},
-{name: 'MOON CHANNÈL',
-description: 'Local TV with excessive and more love for lack work come one come all lets watch it.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/Moon_tv/5-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD8RpUvEhJRAuBB06P5NF0I76NGa9quNxnlQ&usqp=CAU'}]},
-{name: 'BUKEDDE TV 1',
-description: 'General TV channel that is part of the Vision Group (a multimedia conglomerate in Uganda).',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/tv_bukedde1/20-hls/live-media.m3u8?_cdn_attrs=account=readymedia,resource=tv_bukedde1_stream_me', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6GvumIw6ytRimGVbz6b09eAuNj4V_3UoL-w&usqp=CAU'}]},
-{name: 'TOP',
-description: 'TV station under gospel ministry , number one for news, gospel ,Entertainment and sports.',
-duration: 00,
-sources: [
-{ src: 'http://cdn1.rea.cdn.moderntv.eu/readymedia/stream/TOPTV/5-20-hls/live.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFiDDqj-9_krD5GOWCKvA4TyImUc0j4-Og4A&usqp=CAU'}]},
-{name: 'NBS TV',
-description: 'The channel offers local news, International news, political programs, Business.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/tvnbs_tv/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTolU2NreBnPTY6ePla2wq25POsl5rErA4dmA&usqp=CAU'}]},
-{name: 'ARK',
-description: 'Christians television Channel founded by Bro Ronnie Makabai.',
-duration: 00,
-sources: [
-{ src: 'https://arktelevision.org/hlslive/test/test.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHGAncac63JHrAQuQPInvvtb86T_P8R2fklA&usqp=CAU'}]},
-{name: 'BBS',
-description: 'Current affairs & general entertainment channel in Luganda language.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/BBSTV/5-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqnB1Z5xywWF9ph0s1Hn6tmAYf69Zdljv0Tw&usqp=CAU'}]},
-{name: 'URBAN TV',
-description: 'We are your source of information, news, entertainment, and sports...',
-duration: 00,
-sources: [
-{ src: 'https://vse-cdn1-readymedia.rea.cdn.moderntv.eu/readymedia/stream/URBANTV/8-hls/live-media.m3u8?_cdn_attrs=account%3Dreadymedia%2Cresource%3DURBANTV_st', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiSdSbAwW8HjD7kW8W-0fy2Tcp7URVdrNVXg&usqp=CAU'}]},
-{name: 'SALT CHANNEL',
-description: 'Christian based television station with programming that cuts across to fit all audiences.',
-duration: 00,
-sources: [
-{ src: 'http://197.239.30.29/readymedia/stream/SALTTV/5-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRobhVe8TiizadV5wdu8orC3s8PAIGinwq9w&usqp=CAU'}]},
-{name: 'BUKEDDE TV 2',
-description: 'Platform that offers the best Entertainment, Music and Current Affairs.',
-duration: 00,
-sources: [
-{ src: 'https://stream.hydeinnovations.com/bukedde2flussonic/tracks-v1a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiy2MtPdz61cEKvjPRz_q1c3opLQrf_lDIMQ&usqp=CAU'}]},
-{name: 'Galaxy TV',
-description: 'Galaxy TV is Ugandas Funkiest TV Station with the best music, movies, celebrity news and gossip.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/Galaxy_tv/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR35hIz_UV7t0bc_fbw39etQL6DYkXwlcvXtQ&usqp=CAU'}]},
-{name: 'KS CHANNEL',
-description: 'A broad casting and advertising media with daily family friendly programs',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/KS_TV/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5b2p41-ADDIvLmdptxIG516BrMarUlnrmJw&usqp=CAU'}]},
-{name: 'UBC TV',
-description: 'News, entertainment, music fashion.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/ubc/5-20-hls/live.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRHc54cVMQpRFjRklNO0u4nISm3GaNST7LbA&usqp=CAU'}]},
-{name: 'AFRICA ',
-description: 'Africa Muslim TV is a Muslim lifestyle channel focused on inspiring, educating.',
-duration: 00,
-sources: [
-{ src: 'http://africatv.live.net.sa:1935/live/africatv3/playlist.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbT20G-7nQ7g65IafWcJxRqv0qi2xpzawLgg&usqp=CAU'}]},
-{name: 'MAGIC 1',
-description: 'Magic channel will provide programs like music, reality shows.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/Magic1/5-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCT9_ckBHYYGEiBuWZzjDQFeskGtkfUI5v1w&usqp=CAU'}]},
-{name: 'TV WEST',
-description: 'Get the latest news from the trusted source for Western Uganda today.',
-duration: 00,
-sources: [
-{ src: 'https://stream.hydeinnovations.com/tvwest-flussonic/tracks-v1a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFCbjGEfe-vdu1aQPZdt4CUEOhFJTEXuRf_A&usqp=CAU'}]},
-{name: 'WAN LUO',
-description: 'Luo language covering the greater Northern part of Uganda.',
-duration: 00,
-sources: [
-{ src: 'https://stream.hydeinnovations.com/luotv-flussonic/tracks-v5a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj3ZJP42ebrASY-nczomz8MzeH76ZE6SRnng&usqp=CAU'}]},
-{name: 'STAR TV',
-description: 'Uganda Broadcasting Corporation is your news, entertainment, music fashion.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/STARTV/5-20-hls/live.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzm1h2mv8hhgAN364LrSF6mzy5NFNJLnfT9A&usqp=CAU'}]},
-{name: 'DELTA',
-description: 'Broadcasting in Luganda and English with educative and entertaining programmes.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/DELTATV/5-20-hls/live.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkbU0Y5xcKGrWPItGFoarGFUiqDTUPUptMPw&usqp=CAU'}]},
-{name: 'SALAM TV',
-description: 'Salam TV Uganda, Is the First and Only ISLAMIC TV channel in Uganda.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/tv_salamtv/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGX1zcoFb038CphnWDPim9-fLNIFqdqKG2Ng&usqp=CAU'}]},
-{name: 'U24 CHANNEL',
-description: 'Broadcasting Corporation is your news, entertainment, music fashion website. We provide you with the latest breaking news.',
-duration: 00,
-sources: [
-{ src: 'http://197.239.30.29/readymedia/stream/U24/5-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfXcG5jWRbmBT_16LWY3M2BqB2mmVyJTE8_Q&usqp=CAU'}]},
-{name: 'GUGUDDE',
-description: 'Ugandan Christian television Station owned by Makerere Christian Foundation (MCF) Limited.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/GUGUDDETV/5-20-hls/live.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRZ9J6gTnHdNITFTqOjgB7HXToQ83J3HTpOQ&usqp=CAU'}]},
-{name: 'NXT CHANNEL',
-description: 'Nxt radio brings you the biggest hits and biggest shows in town.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/tv_nxtradio/20-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm_UbgTZUM9zyrfpQMr7D0C3kIzq31Ye62Eg&usqp=CAU'}]},
-{name: 'S24 TV',
-description: 'The only business TV channel in the region with first, authentic and reliable information.',
-duration: 00,
-sources: [
-{ src: 'http://197.239.30.29/readymedia/stream/S24/10-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBhhllQapOhCDtZKCnurOjTLILmP-nRM31LQ&usqp=CAU'}]},
-{name: 'KTV',
-description: 'Media & News Company Kampa5o66la, Uganda.',
-duration: 00,
-sources: [
-{ src: 'http://197.239.30.29/readymedia/stream/KTV/5-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1kiTLSW6aD_n0J2rl6OfbUySomkqfGyWV8Q&usqp=CAU'}]},
-{name: 'CHANNEĹ 44',
-description: 'The leading Christian television station in Uganda.',
-duration: 00,
-sources: [
-{ src: 'http://197.239.30.29/readymedia/stream/CHANNEL44/5-20-hls/live.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXsRywZWvmgaBMIY2TC4vlNJ7-37kfXl4X3Q&usqp=CAU'}]},
-{name: 'DREAM TV',
-description: 'Dream TV is a member of the Impact Media Consortium.',
-duration: 00,
-sources: [
-{ src: 'http://128.199.114.2:8080/hls/stream.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi5B1PXJ6B7Stc9KF-qOvqQFmFYwEuzs5R9s8svSQbPBu56RCDUo5rVVw&s=10'}]},
-{name: 'BORA TV',
-description: 'DuisIt broadcasts news, music and entertainment programs in Ateso.',
-duration: 00,
-sources: [
-{ src: 'https://stream.hydeinnovations.com/boratv/tracks-v1a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOUpVA6Mqx-k4XQWBruj69DN2qFV5ExZA0ww&usqp=CAU'}]},
-{name: 'RTV',
-description: 'We are looking for an Agriculture Officer for our Uganda office.',
-duration: 00,
-sources: [
-{ src: 'https://1004910551.rsc.cdn77.org/LS-PRG-44514-1/tracks-v1a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://yt3.googleusercontent.com/7vtBenxvpYONu6xeO_33nXA_Uj9Dmpo61dcmwigxjxCO2AVThh0W9icgwhg5ApCtDJf6G7eMjA=s900-c-k-c0x00ffffff-no-rj'}]},
-{name: 'SPIRIT TV',
-description: 'For the best local and international Christian entertainment.',
-duration: 00,
-sources: [
-{ src: 'http://cdnlive.myspirit.tv/LS-ATL-43240-2/index.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://www.ugchristiannews.com/wp-content/uploads/2019/11/spirit-tvv-1132x670.jpg'}]},
-{name: 'Pulse',
-description: 'Pulse Live Uganda Is Ugandas New Media Publisher.',
-duration: 00,
-sources: [
-{ src: 'https://rea-mtnug-cdn1.rea.cdn.moderntv.eu/readymedia/stream/voa/8-hls/live-media.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mqLzgN787ULpAoLTkN0P0yOU8fWjuOBxfQ&usqp=CAU'}]},
-{name: 'BETHANY',
-description: 'The first health tv channel that strives to become a benchmark for promoting health & wellness content through a holistic approach in Africa.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/tv_bethany/20-hls/live-media.m3u8?_cdn_attrs=account=readymedia,resource=tv_bethany_stream_ye', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPv6Pyr3t8bRHNcI2cUtv42knEKMMI13p-2g&usqp=CAU'}]},
-{name: 'FREEDOM LOVE ZONE',
-description: 'Listen live Freedom LoveZone Radio.',
-duration: 00,
-sources: [
-{ src: 'https://panel.freedomflixtv.org:3665/hybrid/play.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQgNmYSDvSkEEMJ1gpy7ud3yuxBRihQjKF0g&usqp=CAU'}]},
-{name: 'CITIZEN',
-description: 'Home to the most popular television and radio channels according to audience share.',
-duration: 00,
-sources: [
-{ src: 'https://74937.global.ssl.fastly.net/5ea49827ff3b5d7b22708777/live_f874ce1063f311ec8cde2562e0492e2e/tracks-v1a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh5HBrbMPztGvivhUcrzVJkFEY-ovtovtTnA&usqp=CAU'}]},
-{name: 'FREEDOM EXPERIENCE',
-description: 'Christian Based platform that Broadcasts Gospel Music, Praise, Worship, Prayer, Sermons, Movies, Inspirational Videos that Inspires.',
-duration: 00,
-sources: [
-{ src: 'https://panel.freedomflixtv.org:3934/hybrid/play.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1BMaiOiNfcdRWNeCQfoYEoVKft3ycNgwhYA&usqp=CAU'}]},
-{name: 'K24',
-description: 'Fastest growing TV station with a key focus on educating and entertaining its audiences with unique content.',
-duration: 00,
-sources: [
-{ src: 'https://5de06ce62a0b5.streamlock.net/k24/myStream/chunklist_w2042252033.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0IUlQzkAa7Hz1rP0SDEV24o3E8NmBPjFIjw&usqp=CAU'}]},
-{name: 'KC2 KIGALI',
-description: 'Channel focusing on Entertainment and Youth owned by Rwanda Broadcasting Agency..',
-duration: 00,
-sources: [
-{ src: 'https://5c46fa289c89f.streamlock.net/kc2/kc2/chunklist_w12400797.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://i.postimg.cc/4x9NphRx/VVWErj-G5q-YCRSet.jpg'}]},
-{name: 'RWANDA TV',
-description: 'Iris Rwanda Tv is a Rwandan local based Online Tv Channel.',
-duration: 00,
-sources: [
-{ src: 'https://1004910551.rsc.cdn77.org/LS-PRG-44514-1/tracks-v1a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROMjvjdLlPpvcAMo87TrPqWomkqJ4CLIhOJw&usqp=CAU'}]},
-{name: 'FAMILY TV',
-description: 'Broadcasting family-friendly content based on Christian values aimed at #EnrichingLives..',
-duration: 00,
-sources: [
-{ src: 'https://media.streambrothers.com:19360/8028/8028.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?2', type: 'video/webm' },],
-thumbnail: [{src: 'https://coufamilytv.co.ug/public/images/20210713202636_og_image_21.png'}]},
-{name: '3ABN',
-description: 'Dedicated to proclaiming the three angels messages of Revelation 14 as Gods messages of grace.',
-duration: 00,
-sources: [
-{ src: 'https://cdn1.rea.cdn.moderntv.eu/readymedia/stream/3ABN/20-hls/live-media.m3u8?_cdn_attrs=account=readymedia,resource=BABATV_stream_c3', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://3abn.org/img/home/3abnplus.jpg'}]},
-{name: 'TBN AFRICA',
-description: 'Showcases a variety of musical artists, from around Africa .',
-duration: 00,
-sources: [
-{ src: 'https://tbn-jw.cdn.vustreams.com/live/tbn-africa/live.isml/live-video=3000000.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-DIhxBW0Eo0BbJCIwxJxJ7RtoJrP2I-354A&usqp=CAU'}]},
-{name: 'INOORO',
-description: 'Station that brings you latest Kikuyu news, live events and shows.',
-duration: 00,
-sources: [
-{ src: 'https://74937-castr.akamaized.net/5ea49827ff3b5d7b22708777/live_cd93fa8063f411ecb28b5d4f40b51a46/tracks-v1a1/mono.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm', type: 'video/webm' },],
-thumbnail: [{src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTJPeNXeq3rOt_F_pdQE_wf7g0eiNEed-4w&usqp=CAU'}]},
-
-{name: 'TAGY TV',
-description: 'Tagy Television is Your source for all News Updates, Entertainment and Information.',
-duration: 00,
-sources: [
-{ src: 'https://media.streambrothers.com:19360/8121/8121.m3u8', type: 'video/mp4' },
-{ src: 'http://vjs.zencdn.net/v/oceans.webm?5', type: 'video/webm' },],
-thumbnail: [{
-src: 'https://tagytv.com/wp-content/uploads/2023/03/cropped-Tagy-TV-Wonna-Wooli-Website.png'
-}]}]
-</script>
-<!-- Skin 1 demo -->
-<section class="b-video">
-<!-- Video -->
-<div class="b-player playlist-aside">
-<video id="video-1" class="video-js skin-1" controls preload="auto" width="770" height="240" poster="https://i.postimg.cc/cCJHw66C/20230117-104439.jpg" data-setup="{}">
-<source src="demo/temp/video.mp4" type='video/mp4'>
+<div class="container">
+<div class="main-video">
+<div class="video">
+<video class='js-player' poster="https://www.socialcreator.com/srv/imgs/prods/82367_76749.png" controls muted autoplay>
+<source src="https://www.udrop.com/file/6goa/1x1" type="application/x-mpegURL">
 </video>
-<div class="vjs-playlist vjs-playlist-video-1 vjs-playlist-skin-1"></div>
-</div>
+<!--<video src="" poster="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3r48KQZbrv_w2zeTpEMqrIE0BysJMnmdydw&usqp=CAU" controls muted autoplay></video>-->
+<h3 class="title">PERU</h3></div></div>
 
-<!-- Video 1 init DEMO -->
-<script>
-var video1 = videojs('video-1');
-video1.thumbnails(thumbnails); // thumbnails init
-video1.playlist(playlist); // playlists init
-video1.playlistUi({
-className: 'vjs-playlist-video-1'
+<div class="video-list">
+<div class="vid active">
+<video src="https://cdnh71.iblups.com/hls/ptv2.m3u8?advertisingId=&appName=web&appVersion=5.12.0-a87d76d6acd214757f3f9ce727615cd3be3397a8&app_name=web&clientDeviceType=0&clientID=ec36a0cc-6171-407a-b481-12a3677eb61f&clientModelNumber=na&deviceDNT=true&deviceId=ec36a0cc-6171-407a-b481-12a3677eb61f&deviceLat=19.2474&deviceLon=-99.5884&deviceMake=Android%2BBrowser&deviceModel=web&deviceType=web&deviceVersion=4.0&marketingRegion=VE&serverSideAds=true&sessionID=6338cd30-4e24-11eb-b973-0242ac110002&sid=6338cd30-4e24-11eb-b973-0242ac110002&userId=" muted poster="https://i.postimg.cc/1312Fw1C/Picsart-23-05-10-16-37-16-050.png"></video>
+<h3 class="title">PANAMERICANA</h3>
+<center><p>🇵🇪</p></center></div>
+
+
+<div class="vid">
+<video src="https://multimedia.tmcreativos.com:1936/visionnoticias/visionnoticias/playlist.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82362_76744.png"></video>
+<h3 class="title">VNP TV PERU</h3></div>
+
+
+<div class="vid">
+<video src="https://dysmuyxh5vstv.cloudfront.net/hls/live.m3u8?advertisingId=&appName=web&appVersion=5.12.0-a87d76d6acd214757f3f9ce727615cd3be3397a8&app_name=web&clientDeviceType=0&clientID=ec36a0cc-6171-407a-b481-12a3677eb61f&clientModelNumber=na&deviceDNT=true&deviceId=ec36a0cc-6171-407a-b481-12a3677eb61f&deviceLat=19.2474&deviceLon=-99.5884&deviceMake=Android%2BBrowser&deviceModel=web&deviceType=web&deviceVersion=4.0&marketingRegion=VE&serverSideAds=true&sessionID=c26550e9-4e24-11eb-a8d7-0242ac110002&sid=c26550e9-4e24-11eb-a8d7-0242ac110002&userId=" muted poster="https://www.socialcreator.com/srv/imgs/prods/82363_76745.png"></video>
+<h3 class="title">ATV HD</h3></div>
+
+<div class="vid">
+<video src="https://dysmuyxh5vstv.cloudfront.net/hls/atv2.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82364_76746.png"></video>
+<h3 class="title">ATV +</h3></div>
+
+<div class="vid">
+<video src="https://cdnh79.iblups.com/hls/R9WtilpKKB.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82365_76747.png"></video>
+<h3 class="title">TV PERU</h3></div>
+
+<div class="vid">
+<video src="http://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82376_76758.png"></video>
+<h3 class="title">TV PERU NOTICIAS</h3></div>
+
+<div class="vid">
+<video src="https://cdnh74.iblups.com/hls/irtp.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82377_76759.png"></video>
+<h3 class="title"><marquee>TV PERU INTERNACIONAL</marquee></h3></div>
+
+<div class="vid">
+<video src="https://v4.tustreaming.cl/s1tv/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">DMJ TV</h3></div>
+
+<div class="vid">
+<video src="https://ca2.inka.net.pe/bestcablesports/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82368_76750.png"></video>
+<h3 class="title">BEST CABLE SPORTS</h3></div>
+
+<div class="vid">
+<video src="http://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82369_76751.png"></video>
+<h3 class="title">CONTACTO DEPORTIVO</h3></div>
+
+<div class="vid">
+<video src="https://cdnh75.iblups.com/hls/OVJNKV4pSr.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82370_76752.png"></video>
+<h3 class="title">IPE TV </h3></div>
+
+<div class="vid">
+<video src="https://ca2.inka.net.pe/bestcablemusic/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82371_76753.png"></video>
+<h3 class="title">BEST CABLE MUSIC</h3></div>
+
+<div class="vid">
+<video src="https://ca2.inka.net.pe/bestcablehatuntv/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82372_76754.png"></video>
+<h3 class="title">HATUN TV</h3></div>
+
+<div class="vid">
+<video src="https://ca2.inka.net.pe/bestcable/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82375_76757.png"></video>
+<h3 class="title">BEST CABLE</h3></div>
+
+<div class="vid">
+<video src="https://ca2.inka.net.pe/mascumbiatvonline/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82373_76755.png"></video>
+<h3 class="title">MAS CUMBIA TV</h3></div>
+
+<div class="vid">
+<video src="https://cpliv3.onliv3.com:19360/exitosatv/exitosatv.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82374_76756.png"></video>
+<h3 class="title">EXITOSA</h3></div>
+
+<div class="vid">
+<video src="https://cpliv3.onliv3.com:19360/karibenatv/karibenatv.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82365_76747.png"></video>
+<h3 class="title">KARIBEÑA TV</h3></div>
+
+<div class="vid">
+<video src="https://5cefcbf58ba2e.streamlock.net:543/tltvweb/latintv.stream/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">TOP LATINO</h3></div>
+
+<div class="vid">
+<video src="https://7.innovatestream.pe:19360/turbomixoficial/turbomixoficial.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">TURBO MIX OFICIAL</h3></div>
+
+<div class="vid">
+<video src="https://multimedia.tmcreativos.com:1936/visionmusica/visionmusica/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">VISION MUSIC</h3></div>
+
+<div class="vid">
+<video src="https://5c3fb01839654.streamlock.net:1963/iptvantares/liveantarestv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">ANTARES TV </h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/autenticatvmux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">AUNTENTICA TV</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/sanjuanera/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">SANJUANERA TV</h3></div>
+
+<div class="vid">
+<video src="https://tvdatta.com:3838/live/canalcatacaoslive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">CATACAOS TV</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/geniostvmux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">GENIOS TV</h3></div>
+
+<div class="vid">
+<video src="https://tv.oyotunstream.com:1936/master/master/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">MASTER TV</h3></div>
+
+<div class="vid">
+<video src="https://stream.plixitv.live/oktv/oktv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">OK TEVE</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/telecolormux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">TELE COLOR</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/uraniotv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">URANIO TV</h3></div>
+
+<div class="vid">
+<video src="https://5790d294af2dc.streamlock.net/8134/8134/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">TV COSMOS</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/vztv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">VZ TV</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/crtvmux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">CR TV </h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/controversiatv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">CONTROVERSIA</h3></div>
+
+<div class="vid">
+<video src="https://stream.plixitv.live/oktv/oktv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">MONTERRICO TV</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/tv5/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">TEVE 5</h3></div>
+
+<div class="vid">
+<video src="https://servilive.com:3149/live/jn19tvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">JN 19</h3></div>
+
+<div class="vid">
+<video src="https://live.obslivestream.com/viaaltomayomux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">VIA ALTO MAYAO</h3></div>
+
+<div class="vid">
+<video src="https://hls.servidor.stream/storage/megatv.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">MEGA TV</h3></div>
+
+<div class="vid">
+<video src="https://7.innovatestream.pe:19360/cctvchupaca/cctvchupaca.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">DOBLE C TV</h3></div>
+
+<div class="vid">
+<video src="https://ca2.inka.net.pe/cajamarcatv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">CAJAMARCA</h3></div>
+
+<div class="vid">
+<video src="https://ott1.hdlatam.tv/live_abr/webtvTarapotoPe/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">TARAPOTO</h3></div>
+
+<div class="vid">
+<video src="https://multimedia.tmcreativos.com:1936/viatelevision/viatelevision/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">VIA TV</h3></div>
+
+<div class="vid">
+<video src="https://servilive.com:3079/live/cdnatvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">CADENA TV</h3></div>
+
+<div class="vid">
+<video src="https://tvdatta.com:3548/live/chinchatvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">CHINCHA TV</h3></div>
+
+<div class="vid">
+<video src="https://v4.tustreaming.cl/ondadigitaltv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">ONDA DIGITAL</h3></div>
+
+<div class="vid">
+<video src="https://stmv.panel.grupolimalive.com/solstereotv/solstereotv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">SOL STEREO</h3></div>
+
+<div class="vid">
+<video src="https://stmv.panel.grupolimalive.com/uniteltv/uniteltv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">UNITEL TV</h3></div>
+
+<div class="vid">
+<video src="https://video.ingenioperu.com:3681/live/palmerastvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">PALMERAS TV</h3></div>
+
+<div class="vid">
+<video src="http://soberon.us:25461/m0nk/n3w/1117?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">ASIRI TV</h3></div>
+
+<div class="vid">
+<video src="cdn2.ujjina.com:1935/iptvovacion1/liveovacion1tv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
+<h3 class="title">ASIRI TV</h3></div>
+
+
+
+
+
+</div></div>
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script type="text/javascript">
+let listVideo = document.querySelectorAll('.video-list .vid');
+let mainVideo = document.querySelector('.main-video video');
+let title = document.querySelector('.main-video .title');
+
+listVideo.forEach(video =>{
+  video.onclick = () =>{
+    listVideo.forEach(vid => vid.classList.remove('active'));
+    video.classList.add('active');
+    if(video.classList.contains('active')){
+      let src = video.children[0].getAttribute('src');
+      mainVideo.src = src;
+      let text = video.children[1].innerHTML;
+      title.innerHTML = text;
+    };
+  };
 });
 </script>
-</section>
+<script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+<script>//<![CDATA[
+const players = Array.from(document.querySelectorAll('.js-player')).map(player => new Plyr(player));
+//]]></script>
 </body>
 </html>
