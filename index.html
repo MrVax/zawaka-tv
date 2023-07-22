@@ -1,284 +1,292 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Video Playlist </title>
-<!-- Responsive viewport -->
-<meta content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' name='viewport'/>
-<link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<title>تصميم تطبيق ياسين تيفي - تصميم شريف حمدي </title>
+<meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'/>
+
+
+
+<!---------------------
+
+تصميم : شريف حمدي 
+اسم التصميم : ياسين تيفي 
+رقم التواصل : +201507788455 
+رابط يوتيوب لمزيد من الشروحات واكواد html
+https://www.youtube.com/c/Androidsh
+نتمني عدم حذف هذه البيانات 
+بتوفيق لجميع ♥
+
+---------------------->
+
+
+
 <style type="text/css">
-*{margin:0;padding:0;box-sizing:border-box;text-transform:capitalize;}
-body{background:#000
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap');
+body {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    list-style: none;
+    background: #FFFFFF;
+    /* background: #15455800 url(https://i.imgur.com/VpQIXNY.png) fixed; */
+    background-size: cover;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: right;
+    margin: auto;
+    /* position: relative; */
+    background-image: url(https://wallpapers.ispazio.net/wp-content/uploads/2019/06/iOS-13-stock-wallpaper-blue-dark-XS-472x1024.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+h3 {
+    text-align: center;
+    /* text-align: right; */
+    /* padding-right: 65px; */
+    /* padding-top: 2px;
+    font-size: medium; */
+    font-weight: 200;
+    font-family: 'Readex Pro', sans-serif;
 
-;}
-.heading{color:#444;font-size:40px;text-align:center;padding:10px;}
-.container{display:grid;grid-template-columns:2fr 1fr;gap:15px;align-items:flex-start;padding:5px 5%;}
-.container .main-video{background:#151515;border-radius:5px;padding:10px;}
-.container .main-video video{width:100%;border-radius:5px;}
-.container .main-video .title{
-color:#fff;font-size:23px;padding-top:15px;padding-bottom:15px;}
-.container .video-list{
-background:#151515;border-radius:5px;height:317px;overflow-y:scroll;}
-.container .video-list::-webkit-scrollbar{
-width:7px;}
-.container .video-list::-webkit-scrollbar-track{
-background:#000;border-radius:50px;}
-.container .video-list::-webkit-scrollbar-thumb{
-background:#00a7ad;border-radius:50px;}
-.container .video-list .vid video{
-width:100px;border-radius:5px;}
-.container .video-list .vid{
-background:#000;display:flex;align-items:center;gap:15px;border-radius:5px;margin:10px;padding:10px;border:1px solid rgba(0,0,0,.1);cursor:pointer;}
-.container .video-list .vid:hover{
-background:#000;}
-.container .video-list .vid.active{
-background:#00a7ad;}
-.container .video-list .vid.active .title{
-color:#fff;}
-.container .video-list .vid .title{
-color:#fff;font-size:17px;}
-@media (max-width: 999px){
-.container{grid-template-columns:1.5fr 1fr;padding:10px;}}
-@media (max-width: 768px){
-.container{grid-template-columns:1fr;}}
+}
+
+img {
+    width: 180px;
+    height: `;
+    /* margin: 15px; */
+    padding: 10px;
+    margin-top: -34px;
+        margin-right: 15px;
+
+}
+
+header {
+background:rgba(188,17,21,255);
+padding:2px;
+color:#fff;
+margin-bottom:10px;
+position:fixed;
+top:0;
+height:60px;
+width:100%;
+box-shadow: 0px 0px 7px black;
+z-index:1;
+}
+
+#i1{
+position:fixed;
+top:21px;
+
+right:17px;
+font-size:40px;
+}
+#i2{
+position:fixed;
+top:21px;
+left:14px;
+font-size:40px;
+}
+#i3{
+position:fixed;
+top:16px;
+left:40px;
+font-size:40px;
+}
+
+
+#page:hover {
+background:none;
+}
+#page {
+margin-top:75px;
+width:100%;
+
+}
+
+#page a:hover {
+background:#fff;
+}
+#page a {
+height:50px;
+padding-top:2px;
+padding-bottom:2px;
+margin-bottom:11px;
+border:2px solid rgba(188,17,21,255);
+border-radius:15px;
+width:91%;
+display:inline-block;
+margin-right:14px;
+margin-left:14px;
+    background: white;
+
+}
+#page a img {
+/*height:50px;
+margin-right:10px;
+width:50px;
+padding-bottom:4px;
+*/
+    height: 50px;
+    margin-right: 10px;
+    width: 50px;
+    padding-bottom: 4px;
+
+
+}
+#page a p {
+
+    text-align: center;
+    font-family: 'Readex Pro', sans-serif;
+    /* position: absolute; */
+    /* margin-right: 20px; */
+    /* margin-top: -40px; */
+    display: inline-block;
+    font-weight: 550;
+    color: rgba(188,17,21,255);
+
+
+}
 </style>
+
+
+<style>
+/**********************    اكواد القائمه       **********************/
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color:#0a0103;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+      text-align: center;
+    font-family: 'Readex Pro', sans-serif;
+
+}
+
+.sidenav a:hover {
+  color: #131421;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 5px;
+    right: 0;
+  font-size: 15px;
+  margin-left: 0px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+
+
+
+
+
+
+
+
+
 </head>
-<body>
-<div class="container">
-<div class="main-video">
-<div class="video">
-<video class='js-player' poster="https://www.socialcreator.com/srv/imgs/prods/82367_76749.png" controls muted autoplay>
-<source src="https://www.udrop.com/file/6goa/1x1" type="application/x-mpegURL">
-</video>
-<!--<video src="" poster="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3r48KQZbrv_w2zeTpEMqrIE0BysJMnmdydw&usqp=CAU" controls muted autoplay></video>-->
-<h3 class="title">PERU</h3></div></div>
-
-<div class="video-list">
-<div class="vid active">
-<video src="https://cdnh71.iblups.com/hls/ptv2.m3u8?advertisingId=&appName=web&appVersion=5.12.0-a87d76d6acd214757f3f9ce727615cd3be3397a8&app_name=web&clientDeviceType=0&clientID=ec36a0cc-6171-407a-b481-12a3677eb61f&clientModelNumber=na&deviceDNT=true&deviceId=ec36a0cc-6171-407a-b481-12a3677eb61f&deviceLat=19.2474&deviceLon=-99.5884&deviceMake=Android%2BBrowser&deviceModel=web&deviceType=web&deviceVersion=4.0&marketingRegion=VE&serverSideAds=true&sessionID=6338cd30-4e24-11eb-b973-0242ac110002&sid=6338cd30-4e24-11eb-b973-0242ac110002&userId=" muted poster="https://i.postimg.cc/1312Fw1C/Picsart-23-05-10-16-37-16-050.png"></video>
-<h3 class="title">PANAMERICANA</h3>
-<center><p>🇵🇪</p></center></div>
+<body dir="rtl">
+<header>
 
 
-<div class="vid">
-<video src="https://multimedia.tmcreativos.com:1936/visionnoticias/visionnoticias/playlist.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82362_76744.png"></video>
-<h3 class="title">VNP TV PERU</h3></div>
+<!--- مكان البحث ( رابط ) --->
+<a href="http://action_search"><i id="i2" class="fa fa-Search" style="font-size: 20px; color: #fff; margin-top: 2px; "></i></a>
+
+<!--- اسم التطبيق --->
+<CENTER><h3> DSTV SPORTS NOW </h3></CENTER>
+
+<!--- القائمة --->
+<div id="mySidenav" class="sidenav">
+<!--- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">اغلاق ×</a> --->
+  
+<!--- لوجو --->  
+<div class='col-md-9'><img src="https://i.postimg.cc/ZRRwr70n/20220213-045133.png" ></div>
+
+<!--- الاقسام --->
+<a href="go:A"> <i class="fa fa-folder"></i>  HOME    </a>
+<a href="http://action_share"> <i class="fa fa-share"></i>   SHARE    </a>
+<a href="http://action_profile"> <i class="fa fa-user-circle"></i>   ACCOUNT    </a>
+<a href="go:chat"> <i class="fa fa-envelope"></i>   MESSAGES    </
+<!--- كود الاغلاق ممنوع حذفه --->
+<a href="#" onclick="closeNav()">   ❌    </a>
 
 
-<div class="vid">
-<video src="https://dysmuyxh5vstv.cloudfront.net/hls/live.m3u8?advertisingId=&appName=web&appVersion=5.12.0-a87d76d6acd214757f3f9ce727615cd3be3397a8&app_name=web&clientDeviceType=0&clientID=ec36a0cc-6171-407a-b481-12a3677eb61f&clientModelNumber=na&deviceDNT=true&deviceId=ec36a0cc-6171-407a-b481-12a3677eb61f&deviceLat=19.2474&deviceLon=-99.5884&deviceMake=Android%2BBrowser&deviceModel=web&deviceType=web&deviceVersion=4.0&marketingRegion=VE&serverSideAds=true&sessionID=c26550e9-4e24-11eb-a8d7-0242ac110002&sid=c26550e9-4e24-11eb-a8d7-0242ac110002&userId=" muted poster="https://www.socialcreator.com/srv/imgs/prods/82363_76745.png"></video>
-<h3 class="title">ATV HD</h3></div>
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+<i id="i1" class="fa fa-bars" style="font-size:20px;color:#fff"></i>
 
-<div class="vid">
-<video src="https://dysmuyxh5vstv.cloudfront.net/hls/atv2.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82364_76746.png"></video>
-<h3 class="title">ATV +</h3></div>
+</span>
+</div>
+</header>
+<div id="page">
 
-<div class="vid">
-<video src="https://cdnh79.iblups.com/hls/R9WtilpKKB.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82365_76747.png"></video>
-<h3 class="title">TV PERU</h3></div>
 
-<div class="vid">
-<video src="http://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82376_76758.png"></video>
-<h3 class="title">TV PERU NOTICIAS</h3></div>
+<!--- اقسام التطبيق --->
+<a href="https://www.tvsportguide.com/widget/636b8f22c70cb?heading=Events&border_color=blue&autoscroll=1" ><CENTER><p> SPORTS GUIDE </p></CENTER></a>
+<a href="https://1l1l.to/ch55.php" ><CENTER><p> Supersport Rugby </p></CENTER></a>
+<a href="https://1l1l.to/ch51.php" ><CENTER><p> Supersport Premier </p></CENTER></a>
+<a href="https://1l1l.to/ch53.php" ><CENTER><p> Supersport Laliga </p></CENTER></a>
+<a href="https://1l1l.to/ch61.php" ><CENTER><p> ESPN 1 </p></CENTER></a>
+<a href="https://1l1l.to/ch62.php" ><CENTER><p> ESPN 2 </p></CENTER></a>
+<a href="https://1l1l.to/ch54.php" ><CENTER><p> Supersport Grandstand </p></CENTER></a>
+<a href="https://1l1l.to/ch56.php" ><CENTER><p> Supersport Action </p></CENTER></a>
+<a href="https://1l1l.to/ch52.php" ><CENTER><p> Supersport Football </p></CENTER></a>
+<a href="https://1l1l.to/ch50.php" ><CENTER><p> Supersport Maximo 1 </p></CENTER></a>
+<a href="https://1l1l.to/ch57.php" ><CENTER><p> Supersport Variet 1 </p></CENTER></a>
+<a href="https://1l1l.to/ch58.php" ><CENTER><p> Supersport Variet 2 </p></CENTER></a>
+<a href="https://1l1l.to/ch59.php" ><CENTER><p> Supersport Variet 3 </p></CENTER></a>
+<a href="https://1l1l.to/ch60.php" ><CENTER><p> Supersport Variet 4 </p></CENTER></a>
+<a href="https://1l1l.to/ch97.php" ><CENTER><p> Laliga UK </p></CENTER></a>
+<a href="https://1l1l.to/ch41.php" ><CENTER><p> Bein Sports 1 </p></CENTER></a>
+<a href="https://1l1l.to/ch42.php" ><CENTER><p> Bein Sports 2 </p></CENTER></a>
+<a href="https://1l1l.to/ch43.php" ><CENTER><p> Bein Sports 3 </p></CENTER></a>
+<a href="https://1l1l.to/ch44.php" ><CENTER><p> Bein Sports 4 </p></CENTER></a>
+<a href="https://1l1l.to/ch80.php" ><CENTER><p> Bein Sports 5 </p></CENTER></a>
+<a href="https://1l1l.to/ch81.php" ><CENTER><p> Bein Sports 6 </p></CENTER></a>
+<a href="https://1l1l.to/ch82.php" ><CENTER><p> Bein Sports 7 </p></CENTER></a>
+<a href="https://1l1l.to/ch83.php" ><CENTER><p> Bein Sports 8 </p></CENTER></a>
+<a href="https://1l1l.to/ch84.php" ><CENTER><p> Bein Sports 9 </p></CENTER></a>
+<a href="https://1l1l.to/ch85.php" ><CENTER><p> Bein Sports 10</p></CENTER></a>
+<a href="https://1l1l.to/ch46.php" ><CENTER><p> SKY SPORTS FOOTBALL </p></CENTER></a>
+<a href="https://1l1l.to/ch45.php" ><CENTER><p> SKY SPORTS MAIN EVENT </p></CENTER></a>
+<a href="https://1l1l.to/ch66.php" ><CENTER><p> EURO SPORT 1 </p></CENTER></a>
+<a href="https://1l1l.to/ch67.php" ><CENTER><p> EURO SPORT 2 </p></CENTER></a>
+<a href="https://1l1l.to/ch47.php" ><CENTER><p> SKY SPORTS  PREMIER LEAGUE </p></CENTER></a>
+<a href="https://www.tutelehd.com/online.php?a=154" ><CENTER><p> SKY SPORTS CRICKET </p></CENTER></a>
+<a href="https://1l1l.to/ch49.php" ><CENTER><p> SKY SPORTS F1 </p></CENTER></a>
+<a href="https://1l1l.to/ch48.php" ><CENTER><p> SKY SPORTS ARENA  </p></CENTER></a>
+<a href="https://1l1l.to/ch69.php" ><CENTER><p> ITV SPORTS</p></CENTER></a>
+</div>
 
-<div class="vid">
-<video src="https://cdnh74.iblups.com/hls/irtp.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82377_76759.png"></video>
-<h3 class="title"><marquee>TV PERU INTERNACIONAL</marquee></h3></div>
 
-<div class="vid">
-<video src="https://v4.tustreaming.cl/s1tv/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">DMJ TV</h3></div>
 
-<div class="vid">
-<video src="https://ca2.inka.net.pe/bestcablesports/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82368_76750.png"></video>
-<h3 class="title">BEST CABLE SPORTS</h3></div>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
 
-<div class="vid">
-<video src="http://cdnh4.iblups.com/hls/RMuwrdk7M9.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82369_76751.png"></video>
-<h3 class="title">CONTACTO DEPORTIVO</h3></div>
-
-<div class="vid">
-<video src="https://cdnh75.iblups.com/hls/OVJNKV4pSr.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82370_76752.png"></video>
-<h3 class="title">IPE TV </h3></div>
-
-<div class="vid">
-<video src="https://ca2.inka.net.pe/bestcablemusic/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82371_76753.png"></video>
-<h3 class="title">BEST CABLE MUSIC</h3></div>
-
-<div class="vid">
-<video src="https://ca2.inka.net.pe/bestcablehatuntv/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82372_76754.png"></video>
-<h3 class="title">HATUN TV</h3></div>
-
-<div class="vid">
-<video src="https://ca2.inka.net.pe/bestcable/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82375_76757.png"></video>
-<h3 class="title">BEST CABLE</h3></div>
-
-<div class="vid">
-<video src="https://ca2.inka.net.pe/mascumbiatvonline/index.m3u8" muted poster="https://www.socialcreator.com/srv/imgs/prods/82373_76755.png"></video>
-<h3 class="title">MAS CUMBIA TV</h3></div>
-
-<div class="vid">
-<video src="https://cpliv3.onliv3.com:19360/exitosatv/exitosatv.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82374_76756.png"></video>
-<h3 class="title">EXITOSA</h3></div>
-
-<div class="vid">
-<video src="https://cpliv3.onliv3.com:19360/karibenatv/karibenatv.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82365_76747.png"></video>
-<h3 class="title">KARIBEÑA TV</h3></div>
-
-<div class="vid">
-<video src="https://5cefcbf58ba2e.streamlock.net:543/tltvweb/latintv.stream/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">TOP LATINO</h3></div>
-
-<div class="vid">
-<video src="https://7.innovatestream.pe:19360/turbomixoficial/turbomixoficial.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">TURBO MIX OFICIAL</h3></div>
-
-<div class="vid">
-<video src="https://multimedia.tmcreativos.com:1936/visionmusica/visionmusica/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">VISION MUSIC</h3></div>
-
-<div class="vid">
-<video src="https://5c3fb01839654.streamlock.net:1963/iptvantares/liveantarestv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">ANTARES TV </h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/autenticatvmux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">AUNTENTICA TV</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/sanjuanera/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">SANJUANERA TV</h3></div>
-
-<div class="vid">
-<video src="https://tvdatta.com:3838/live/canalcatacaoslive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">CATACAOS TV</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/geniostvmux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">GENIOS TV</h3></div>
-
-<div class="vid">
-<video src="https://tv.oyotunstream.com:1936/master/master/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">MASTER TV</h3></div>
-
-<div class="vid">
-<video src="https://stream.plixitv.live/oktv/oktv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">OK TEVE</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/telecolormux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">TELE COLOR</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/uraniotv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">URANIO TV</h3></div>
-
-<div class="vid">
-<video src="https://5790d294af2dc.streamlock.net/8134/8134/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">TV COSMOS</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/vztv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">VZ TV</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/crtvmux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">CR TV </h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/controversiatv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">CONTROVERSIA</h3></div>
-
-<div class="vid">
-<video src="https://stream.plixitv.live/oktv/oktv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">MONTERRICO TV</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/tv5/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">TEVE 5</h3></div>
-
-<div class="vid">
-<video src="https://servilive.com:3149/live/jn19tvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">JN 19</h3></div>
-
-<div class="vid">
-<video src="https://live.obslivestream.com/viaaltomayomux/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">VIA ALTO MAYAO</h3></div>
-
-<div class="vid">
-<video src="https://hls.servidor.stream/storage/megatv.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">MEGA TV</h3></div>
-
-<div class="vid">
-<video src="https://7.innovatestream.pe:19360/cctvchupaca/cctvchupaca.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">DOBLE C TV</h3></div>
-
-<div class="vid">
-<video src="https://ca2.inka.net.pe/cajamarcatv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">CAJAMARCA</h3></div>
-
-<div class="vid">
-<video src="https://ott1.hdlatam.tv/live_abr/webtvTarapotoPe/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">TARAPOTO</h3></div>
-
-<div class="vid">
-<video src="https://multimedia.tmcreativos.com:1936/viatelevision/viatelevision/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">VIA TV</h3></div>
-
-<div class="vid">
-<video src="https://servilive.com:3079/live/cdnatvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">CADENA TV</h3></div>
-
-<div class="vid">
-<video src="https://tvdatta.com:3548/live/chinchatvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">CHINCHA TV</h3></div>
-
-<div class="vid">
-<video src="https://v4.tustreaming.cl/ondadigitaltv/index.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">ONDA DIGITAL</h3></div>
-
-<div class="vid">
-<video src="https://stmv.panel.grupolimalive.com/solstereotv/solstereotv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">SOL STEREO</h3></div>
-
-<div class="vid">
-<video src="https://stmv.panel.grupolimalive.com/uniteltv/uniteltv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">UNITEL TV</h3></div>
-
-<div class="vid">
-<video src="https://video.ingenioperu.com:3681/live/palmerastvlive.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">PALMERAS TV</h3></div>
-
-<div class="vid">
-<video src="http://soberon.us:25461/m0nk/n3w/1117?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">ASIRI TV</h3></div>
-
-<div class="vid">
-<video src="cdn2.ujjina.com:1935/iptvovacion1/liveovacion1tv/playlist.m3u8?" muted poster="https://www.socialcreator.com/srv/imgs/prods/82366_76748.png"></video>
-<h3 class="title">ASIRI TV</h3></div>
-</div></div>
-<!-- partial -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-<script type="text/javascript">
-let listVideo = document.querySelectorAll('.video-list .vid');
-let mainVideo = document.querySelector('.main-video video');
-let title = document.querySelector('.main-video .title');
-listVideo.forEach(video =>{
-  video.onclick = () =>{
-    listVideo.forEach(vid => vid.classList.remove('active'));
-    video.classList.add('active');
-    if(video.classList.contains('active')){
-      let src = video.children[0].getAttribute('src');
-      mainVideo.src = src;
-      let text = video.children[1].innerHTML;
-      title.innerHTML = text;
-    };
-  };
-});
-</script>
-<script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
-<script>//<![CDATA[
-const players = Array.from(document.querySelectorAll('.js-player')).map(player => new Plyr(player));
-//]]></script>
-</body>
-</html>
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+  </script>
