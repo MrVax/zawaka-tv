@@ -1,292 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&family=Roboto:wght@300&display=swap" rel="stylesheet">
-<title>تصميم تطبيق ياسين تيفي - تصميم شريف حمدي </title>
-<meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'/>
-
-
-
-<!---------------------
-
-تصميم : شريف حمدي 
-اسم التصميم : ياسين تيفي 
-رقم التواصل : +201507788455 
-رابط يوتيوب لمزيد من الشروحات واكواد html
-https://www.youtube.com/c/Androidsh
-نتمني عدم حذف هذه البيانات 
-بتوفيق لجميع ♥
-
----------------------->
-
-
-
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap');
-body {
-    padding: 0;
-    margin: 0;
-    user-select: none;
-    list-style: none;
-    background: #FFFFFF;
-    /* background: #15455800 url(https://i.imgur.com/VpQIXNY.png) fixed; */
-    background-size: cover;
-    font-weight: 500;
-    font-size: 16px;
-    text-align: right;
-    margin: auto;
-    /* position: relative; */
-    background-image: url(https://wallpapers.ispazio.net/wp-content/uploads/2019/06/iOS-13-stock-wallpaper-blue-dark-XS-472x1024.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-h3 {
-    text-align: center;
-    /* text-align: right; */
-    /* padding-right: 65px; */
-    /* padding-top: 2px;
-    font-size: medium; */
-    font-weight: 200;
-    font-family: 'Readex Pro', sans-serif;
-
-}
-
-img {
-    width: 180px;
-    height: `;
-    /* margin: 15px; */
-    padding: 10px;
-    margin-top: -34px;
-        margin-right: 15px;
-
-}
-
-header {
-background:rgba(188,17,21,255);
-padding:2px;
-color:#fff;
-margin-bottom:10px;
-position:fixed;
-top:0;
-height:60px;
-width:100%;
-box-shadow: 0px 0px 7px black;
-z-index:1;
-}
-
-#i1{
-position:fixed;
-top:21px;
-
-right:17px;
-font-size:40px;
-}
-#i2{
-position:fixed;
-top:21px;
-left:14px;
-font-size:40px;
-}
-#i3{
-position:fixed;
-top:16px;
-left:40px;
-font-size:40px;
-}
-
-
-#page:hover {
-background:none;
-}
-#page {
-margin-top:75px;
-width:100%;
-
-}
-
-#page a:hover {
-background:#fff;
-}
-#page a {
-height:50px;
-padding-top:2px;
-padding-bottom:2px;
-margin-bottom:11px;
-border:2px solid rgba(188,17,21,255);
-border-radius:15px;
-width:91%;
-display:inline-block;
-margin-right:14px;
-margin-left:14px;
-    background: white;
-
-}
-#page a img {
-/*height:50px;
-margin-right:10px;
-width:50px;
-padding-bottom:4px;
-*/
-    height: 50px;
-    margin-right: 10px;
-    width: 50px;
-    padding-bottom: 4px;
-
-
-}
-#page a p {
-
-    text-align: center;
-    font-family: 'Readex Pro', sans-serif;
-    /* position: absolute; */
-    /* margin-right: 20px; */
-    /* margin-top: -40px; */
-    display: inline-block;
-    font-weight: 550;
-    color: rgba(188,17,21,255);
-
-
-}
-</style>
-
-
-<style>
-/**********************    اكواد القائمه       **********************/
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  background-color:#0a0103;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 15px;
-  color: #fff;
-  display: block;
-  transition: 0.3s;
-      text-align: center;
-    font-family: 'Readex Pro', sans-serif;
-
-}
-
-.sidenav a:hover {
-  color: #131421;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 5px;
-    right: 0;
-  font-size: 15px;
-  margin-left: 0px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-
-
-
-
-
-
-
-
-
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Wonderful Direct Pharmacy | Flutter Payment</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
-<body dir="rtl">
-<header>
 
+<body>
+    <section class="main-content">
+        <h3>Subscribe Now !</h3>
+        <hr>
+<div class="row">
+    <form action="" method="POST" id="payform" class="col s12">
+            <label for="name">Full Name</label>
+            <input type="text" name="fullName" id="fullName" placeholder="Enter full name here...." required>
 
-<!--- مكان البحث ( رابط ) --->
-<a href="http://action_search"><i id="i2" class="fa fa-Search" style="font-size: 20px; color: #fff; margin-top: 2px; "></i></a>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="number" name="phoneNumber" id="phoneNumber" placeholder="Enter phone number here here...."
+                required>
 
-<!--- اسم التطبيق --->
-<CENTER><h3> DSTV SPORTS NOW </h3></CENTER>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter email..." required>
 
-<!--- القائمة --->
-<div id="mySidenav" class="sidenav">
-<!--- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">اغلاق ×</a> --->
-  
-<!--- لوجو --->  
-<div class='col-md-9'><img src="https://i.postimg.cc/ZRRwr70n/20220213-045133.png" ></div>
+            <label for="amount">amount:</label>
+            <input type="number" name="amount" id="amount" placeholder="Enter an amount here..." required>
+            <button type="button" onClick="makePayment()">Make Payment</button>
 
-<!--- الاقسام --->
-<a href="go:A"> <i class="fa fa-folder"></i>  HOME    </a>
-<a href="http://action_share"> <i class="fa fa-share"></i>   SHARE    </a>
-<a href="http://action_profile"> <i class="fa fa-user-circle"></i>   ACCOUNT    </a>
-<a href="go:chat"> <i class="fa fa-envelope"></i>   MESSAGES    </
-<!--- كود الاغلاق ممنوع حذفه --->
-<a href="#" onclick="closeNav()">   ❌    </a>
+        </form>
+    </div>
+    
 
+    </section>
 
-</div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">
-<i id="i1" class="fa fa-bars" style="font-size:20px;color:#fff"></i>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
 
-</span>
-</div>
-</header>
-<div id="page">
-
-
-<!--- اقسام التطبيق --->
-<a href="https://www.tvsportguide.com/widget/636b8f22c70cb?heading=Events&border_color=blue&autoscroll=1" ><CENTER><p> SPORTS GUIDE </p></CENTER></a>
-<a href="https://1l1l.to/ch55.php" ><CENTER><p> Supersport Rugby </p></CENTER></a>
-<a href="https://1l1l.to/ch51.php" ><CENTER><p> Supersport Premier </p></CENTER></a>
-<a href="https://1l1l.to/ch53.php" ><CENTER><p> Supersport Laliga </p></CENTER></a>
-<a href="https://1l1l.to/ch61.php" ><CENTER><p> ESPN 1 </p></CENTER></a>
-<a href="https://1l1l.to/ch62.php" ><CENTER><p> ESPN 2 </p></CENTER></a>
-<a href="https://1l1l.to/ch54.php" ><CENTER><p> Supersport Grandstand </p></CENTER></a>
-<a href="https://1l1l.to/ch56.php" ><CENTER><p> Supersport Action </p></CENTER></a>
-<a href="https://1l1l.to/ch52.php" ><CENTER><p> Supersport Football </p></CENTER></a>
-<a href="https://1l1l.to/ch50.php" ><CENTER><p> Supersport Maximo 1 </p></CENTER></a>
-<a href="https://1l1l.to/ch57.php" ><CENTER><p> Supersport Variet 1 </p></CENTER></a>
-<a href="https://1l1l.to/ch58.php" ><CENTER><p> Supersport Variet 2 </p></CENTER></a>
-<a href="https://1l1l.to/ch59.php" ><CENTER><p> Supersport Variet 3 </p></CENTER></a>
-<a href="https://1l1l.to/ch60.php" ><CENTER><p> Supersport Variet 4 </p></CENTER></a>
-<a href="https://1l1l.to/ch97.php" ><CENTER><p> Laliga UK </p></CENTER></a>
-<a href="https://1l1l.to/ch41.php" ><CENTER><p> Bein Sports 1 </p></CENTER></a>
-<a href="https://1l1l.to/ch42.php" ><CENTER><p> Bein Sports 2 </p></CENTER></a>
-<a href="https://1l1l.to/ch43.php" ><CENTER><p> Bein Sports 3 </p></CENTER></a>
-<a href="https://1l1l.to/ch44.php" ><CENTER><p> Bein Sports 4 </p></CENTER></a>
-<a href="https://1l1l.to/ch80.php" ><CENTER><p> Bein Sports 5 </p></CENTER></a>
-<a href="https://1l1l.to/ch81.php" ><CENTER><p> Bein Sports 6 </p></CENTER></a>
-<a href="https://1l1l.to/ch82.php" ><CENTER><p> Bein Sports 7 </p></CENTER></a>
-<a href="https://1l1l.to/ch83.php" ><CENTER><p> Bein Sports 8 </p></CENTER></a>
-<a href="https://1l1l.to/ch84.php" ><CENTER><p> Bein Sports 9 </p></CENTER></a>
-<a href="https://1l1l.to/ch85.php" ><CENTER><p> Bein Sports 10</p></CENTER></a>
-<a href="https://1l1l.to/ch46.php" ><CENTER><p> SKY SPORTS FOOTBALL </p></CENTER></a>
-<a href="https://1l1l.to/ch45.php" ><CENTER><p> SKY SPORTS MAIN EVENT </p></CENTER></a>
-<a href="https://1l1l.to/ch66.php" ><CENTER><p> EURO SPORT 1 </p></CENTER></a>
-<a href="https://1l1l.to/ch67.php" ><CENTER><p> EURO SPORT 2 </p></CENTER></a>
-<a href="https://1l1l.to/ch47.php" ><CENTER><p> SKY SPORTS  PREMIER LEAGUE </p></CENTER></a>
-<a href="https://www.tutelehd.com/online.php?a=154" ><CENTER><p> SKY SPORTS CRICKET </p></CENTER></a>
-<a href="https://1l1l.to/ch49.php" ><CENTER><p> SKY SPORTS F1 </p></CENTER></a>
-<a href="https://1l1l.to/ch48.php" ><CENTER><p> SKY SPORTS ARENA  </p></CENTER></a>
-<a href="https://1l1l.to/ch69.php" ><CENTER><p> ITV SPORTS</p></CENTER></a>
-</div>
+</html>
 
 
 
 <script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
+    const form = document.getElementById("payForm");
+    form.addEventListener("submit", makePayment);
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-  </script>
+    function makePayment() {
+
+
+        FlutterwaveCheckout({
+            public_key: "FLWPUBK-8bee60c168d41770e1b92106aee07a28-X",
+            tx_ref: "ay_" + Math.floor((Math.random() * 1000000000) + 1),
+            amount: document.getElementById("amount").value,
+            currency: "UGX",
+            customer: {
+                email: document.getElementById("email").value,
+                phonenumber: document.getElementById("phoneNumber").value,
+                name: document.getElementById("fullName").value
+            },
+            callback: function (data) {
+                console.log(data);
+                const reference = data.tx_ref;
+                alert("payment was successfully completed" + reference)
+            },
+            customizations: {
+                "title": "Wonderful Direct pharmacy",
+                "description": "payment integration",
+                "logo": "https://i.postimg.cc/fT28bdQ8/20230729-100340.png"
+            }
+        });
+    }
+</script>
