@@ -1,76 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Subscribe Now !</title>
-    <link rel="stylesheet" href="/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flutterwave HTML Checkout</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  header img {
+    max-width: 150px;
+    height: auto;
+  }
+
+  form {
+    background-color: #180b26;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  label {
+    font-weight: bold;
+    color: white;
+  }
+
+  input[type="text"],
+  select {
+    width: calc(100% - 40px);
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    background-color: #2fad92;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #cc0609;
+  }
+</style>
 </head>
-
 <body>
-    <section class="main-content">
-        <h3>Subscribe Now !</h3>
-        <hr>
-<div class="row">
-    <form action="" method="POST" id="payform" class="col s12">
-            <label for="name">Full Name</label>
-            <input type="text" name="fullName" id="fullName" placeholder="Enter full name here...." required>
 
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="number" name="phoneNumber" id="phoneNumber" placeholder="Enter Your Phone number here...."
-                required>
+<div class="container">
+  <header>
+    <img src="https://i.postimg.cc/660nD7HL/20240404-042452.png" alt="Your Logo">
+  </header>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="Enter email..." required>
-
-            <label for="amount">amount:</label>
-            <input type="number" name="Amount" id="amount" placeholder="Enter an amount here..." required>
-            <button type="button" onClick="makePayment()">Make Payment</button>
-
-        </form>
-    </div>
-    
-
-    </section>
-
-    <script src="https://checkout.flutterwave.com/v3.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-
-</html>
-
-
+  <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay" onsubmit="return validateForm()">
+    <!-- Public key -->
+    <input type="hidden" name="public_key" value="FLWPUBK-523064aede3a401c4d29881810a13b0f-X">
+    <!-- Full Name -->
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" name="customer[full_name]" placeholder="Enter your full name">
+    <!-- Email -->
+    <label for="email">Email</label>
+    <input type="text" id="email" name="customer[email]" placeholder="Enter your email">
+    <!-- Phone -->
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="customer[phone_number]" placeholder="Enter your phone number">
+    <!-- Transaction reference -->
+    <input type="hidden" name="tx_ref" value="bitethtx-019203">
+    <!-- Amount   -->
+    <label for="amount">Amount</label>
+    <input type="text" id="amount" name="amount" placeholder="Enter amount">
+    <span id="amountError" style="color: red; display: none;">Please enter a valid amount.</span>
+    <!-- Currency -->
+    <label for="currency">Currency</label>
+    <select id="currency" name="currency">
+      <option value="UGX" selected>UGX (Ugandan Shilling)</option>
+      <option value="KES">KES (Kenyan Shilling)</option>
+      <option value="NGN">NGN (Nigerian Naira)</option>
+      <option value="GHS">GHS (Ghanaian Cedi)</option>
+      <option value="RWF">RWF (Rwandan Franc)</option>
+      <option value="ZMW">ZMW (Zambian Kwacha)</option>
+      <option value="TZS">TZS (Tanzanian Shilling)</option>
+      <option value="MWK">MWK (Malawian Kwacha)</option>
+      <option value="XOF">XOF (West African CFA franc)</option>
+      <option value="XAF">XAF (Central African CFA franc)</option>
+    </select>
+    <!-- Meta -->
+    <input type="hidden" name="meta[token]" value="54">
+    <!-- Redirect url -->
+    <input type="hidden" name="redirect_url" value="https://demoredirect.localhost.me/">
+    <input type="submit" value="Submit Payment">
+  </form>
+</div>
 
 <script>
-    const form = document.getElementById("payForm");
-    form.addEventListener("submit", makePayment);
+  function validateForm() {
+    var amount = document.getElementById("amount").value;
+    var isValidAmount = /^\d+(\.\d{1,2})?$/.test(amount);
 
-    function makePayment() {
-
-
-        FlutterwaveCheckout({
-            public_key: "FLWPUBK-523064aede3a401c4d29881810a13b0f-X",
-            tx_ref: "ay_" + Math.floor((Math.random() * 1000000000) + 1),
-            amount: document.getElementById("amount").value,
-            currency: "UGX",
-            customer: {
-                email: document.getElementById("email").value,
-                phonenumber: document.getElementById("phoneNumber").value,
-                name: document.getElementById("fullName").value
-            },
-            callback: function (data) {
-                console.log(data);
-                const reference = data.tx_ref;
-                alert("payment was successfully completed" + reference)
-            },
-            customizations: {
-                "title": "Wonderful Direct pharmacy",
-                "description": "payment integration",
-                "logo": "https://i.postimg.cc/QCPdK571/20240309-151831.png"
-            }
-        });
+    if (!isValidAmount) {
+      document.getElementById("amountError").style.display = "inline";
+      return false;
     }
+
+    return true;
+  }
 </script>
+
+</body>
+    </html>
